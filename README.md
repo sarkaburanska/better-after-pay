@@ -1,4 +1,11 @@
-## Dovetail - React quick project
+## Personal comment
+I didn't have any problem with purpose. I play a little with implementation of context and testing/mocking it. I could probably write more tests, for reducer as well as for visibility of components in App with particular state.
+
+![alt text](src/images/Counting.png)
+![alt text](src/images/Error_screen.png)
+
+## Assignement
+### Dovetail - React quick project
 
 It's time to build the next Afterpay. The first version of the Afterpay app was focused on providing a way for users to
 pay in physical stores. It's time to go minimalist and make a bare bones version of the app using React web.
