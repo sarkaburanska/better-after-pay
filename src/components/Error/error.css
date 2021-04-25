@@ -1,0 +1,13 @@
+.error {
+    margin: 10px 20px;
+    padding: 10px 20px;
+}
+
+.error p {
+    color: #860000;
+}
+
+.error .emoji {
+    width: 150px;
+    height: auto;
+}

@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { isNotNilOrEmpty, isNilOrEmpty } from '../../utils/utils';
-import { store } from '../../store';
+import { Context } from '../../context';
 import moment from 'moment';
 import { fetch } from '../../services/APIService';
 import { FETCH_BARCODE } from '../../utils/constants';
 import './expirationClock.css';
 
 const ExpirationClock = () => {
-  const { state: { barcode }, dispatch } = useContext(store);
+  const { state: { barcode }, dispatch } = useContext(Context);
   const fetchBarcode = fetch(dispatch, FETCH_BARCODE);
   const [expiration, setExpiration] = useState(null);
 

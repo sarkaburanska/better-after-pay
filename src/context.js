@@ -13,16 +13,14 @@ const initialState = {
   barcode: barcodeInitState,
 };
 
-const store = createContext(initialState);
-const { Provider } = store;
+const Context = createContext(initialState);
 
 // In case of more reducers, i would use combineReducer and each of them separate to own file
-const Context = ({ children }) => {
+const Provider = ({ children, mockInitialState }) => {
   const [state, dispatch] = useReducer((state, action) => {
-      console.log('action', action, state);
       switch (action.type) {
         case FETCH_BARCODE:
-          return { ...state, isLoading: true, barcode: barcodeInitState, error: { response: { status: 503 } } };
+          return { ...state, isLoading: true, barcode: barcodeInitState, error: null };
         case FETCH_BARCODE_SUCCESS:
           return {
             ...state, isLoading: false, barcode: {
@@ -35,14 +33,15 @@ const Context = ({ children }) => {
           throw new Error();
       }
     },
-    initialState
+    mockInitialState || initialState
   );
 
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
+  return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>;
 };
 
-Context.propTypes = {
+Provider.propTypes = {
   children: PropTypes.node,
+  mockInitialState: PropTypes.shape(),
 }
 
-export { store, Context }
+export { Context, Provider }

@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import './App.css';
 import AfterPayBarcode from './components/AfterPayBarcode';
 import ExpirationClock from './components/ExpirationClock';
-import { store } from './store';
+import { Context } from './context';
 import Loading from './components/Loading';
 import { isNotNilOrEmpty, isNilOrEmpty } from './utils/utils';
 import Error from './components/Error';
 
 const App = () => {
-  const { state: { isLoading, error } } = useContext(store);
+  const { state: { isLoading, error } } = useContext(Context);
   return (
     <div className="App">
       <div>
