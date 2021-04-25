@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import AfterPayBarcode from './components/AfterPayBarcode';
+import ExpirationClock from './components/ExpirationClock';
+import { store } from './store';
+import Loading from './components/Loading';
+import { isNotNilOrEmpty, isNilOrEmpty } from './utils/utils';
+import Error from './components/Error';
 
-function App() {
+const App = () => {
+  const { state: { isLoading, error } } = useContext(store);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>Barcode</h1>
+        {isLoading && <Loading />}
+        {!isLoading && (
+          <>
+            {isNotNilOrEmpty(error) && <Error />}
+            {isNilOrEmpty(error) &&
+            <>
+              <AfterPayBarcode />
+            </>
+            }
+            <ExpirationClock />
+          </>
+        )}
+      </div>
     </div>
   );
 }
